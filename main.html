@@ -8,7 +8,7 @@
     return res;
   }
 function Encrypt() {
-    plaintext = document.getElementById("p").value.toLowerCase().replace(/[^a-z]/g, "");  
+    plaintext = document.getElementById("p").value.toLowerCase();  
     if(plaintext.length < 1){ alert("please enter some plaintext"); return; }    
     var key = parseInt(document.getElementById("key").value);
     console.log("prompt1")
