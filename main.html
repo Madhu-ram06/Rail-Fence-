@@ -3,6 +3,8 @@
         <link rel="stylesheet" href="./main.css"/>
         </head> 
 <script type="text/javascript">
+    let key=999;
+    var ciphertextnew="";
   function random( key)
   { var res=Math.random().toString(36).slice(2, key+3);
     return res;
@@ -10,9 +12,17 @@
 function Encrypt() {
     plaintext = document.getElementById("p").value.toLowerCase();  
     if(plaintext.length < 1){ alert("please enter some plaintext"); return; }    
-    var key = parseInt(document.getElementById("key").value);
-    console.log("prompt1")
+     key = parseInt(document.getElementById("key").value);
+     console.log(key)
+    if(isNaN(key))
+    {alert("Please enter key")
+    document.getElementById("c").value=""
+    document.getElementById("r").value=""
+    return;
+}
 ciphertext=""
+    
+
  
     
     if(key > Math.floor(2*(plaintext.length-1))){ alert("key is too large for the plaintext length."); return; }  
@@ -29,15 +39,19 @@ ciphertext=""
     for(i=line; i<plaintext.length; i+=2*(key-1)) ciphertext += plaintext.charAt(i);
     ciphertext=random(key)+ciphertext+random(key);
     console.log(ciphertext);
-    document.getElementById("c").value = ciphertext;
-    document.getElementById("r").value = ciphertext
+    var finaltext=ciphertext
+    ciphertextnew=ciphertext;
+    finaltext=finaltext.replace(/\s+/g, ''); 
+    
+    document.getElementById("c").value = finaltext;
+    document.getElementById("r").value = finaltext;
     
 }
 
 
 function Decrypt() {
-    ciphertext = document.getElementById("c").value.toLowerCase();  
-    var key = parseInt(document.getElementById("key").value);
+      ciphertext=ciphertextnew;
+     key = parseInt(document.getElementById("key").value);
     var length=ciphertext.length;
    
     //if(ciphertext.length < 1){ alert("please enter some ciphertext (letters only)"); return; } 
